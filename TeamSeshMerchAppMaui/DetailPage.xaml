@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeamSeshMerchAppMaui.DetailPage"
+             xmlns:item="clr-namespace:TeamSeshMerchAppMaui"
+             Title="DetailPage">
+    <Grid RowDefinitions="Auto,Auto,*" IsClippedToBounds="True">
+
+        <CollectionView Grid.Row="2" x:Name="albumCollection">
+            <CollectionView.EmptyView>
+                <ContentView>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                        <Label Text="No results matched your filter."
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </ContentView>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="item:rssChannelItem" x:Name="dtaData">
+                    <VerticalStackLayout>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="idField" />
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="titleField" />
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="descriptionField" />
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="priceField" />
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="linkField" />
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="image_linkField" />
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="additional_image_linkField" />
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="mpnField" />
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="conditionField" />
+                            </Label.Text>
+                        </Label>
+                        <Label>
+                            <Label.Text>
+                                <Binding Path="availabilityField" />
+                            </Label.Text>
+                        </Label>
+
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
