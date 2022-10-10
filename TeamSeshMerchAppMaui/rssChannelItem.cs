@@ -18,5 +18,44 @@ namespace TeamSeshMerchAppMaui
         public int mpnField { get; set; }
         public string conditionField { get; set; }
         public string availabilityField { get; set; }
+        public Color stockColor 
+        {
+            get
+            {
+                Color c = new Color();
+                if (this.availabilityField == "out of stock")
+                {
+                    c =  Colors.Red;
+                }
+                else
+                {
+                    c = Colors.Green;
+                }
+                return c;
+            }
+            set
+            {
+                stockColor = value;
+            }
+        }
+        public string TextCut
+        {
+            get
+            {
+                try
+                {
+                    titleField = titleField.Remove(22);
+                    return titleField + " ...";
+                }
+                catch (Exception)
+                {
+                    return titleField;
+                }
+            }
+            set
+            {
+                TextCut = value;
+            }
+        }
     }
 }

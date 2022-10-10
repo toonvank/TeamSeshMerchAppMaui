@@ -21,7 +21,7 @@ namespace TeamSeshMerchAppMaui
                 rssChannelItem localItem = new rssChannelItem();
                 XmlNodeList nl = doc.GetElementsByTagName("item")[i].ChildNodes;
                 localItem.idField = int.Parse(nl[0].InnerText);
-                localItem.titleField = nl[1].InnerText;
+                localItem.titleField = nl[1].InnerText.ToUpper();
                 localItem.descriptionField = nl[2].InnerText;
                 localItem.priceField = nl[3].InnerText;
                 localItem.linkField = nl[4].InnerText;
