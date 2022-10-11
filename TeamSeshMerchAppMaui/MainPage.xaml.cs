@@ -18,6 +18,7 @@ public partial class MainPage : ContentPage
         await m.FillProductList();
         albumCollection.ItemsSource = DataPass.rssChannel;
         activity.IsRunning = false;
+        carousel.ItemsSource = DataPass.rssChannel;
     }
 
     private async void tapFrame_Tapped(object sender, EventArgs e)

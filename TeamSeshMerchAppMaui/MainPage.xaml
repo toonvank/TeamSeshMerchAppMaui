@@ -4,10 +4,36 @@
              xmlns:item="clr-namespace:TeamSeshMerchAppMaui"
              x:Class="TeamSeshMerchAppMaui.MainPage">
 
-    <Grid x:Name="viewGrid" RowDefinitions="Auto,Auto,*" ColumnDefinitions="*,*,*" IsClippedToBounds="True">
+    <Grid x:Name="viewGrid" RowDefinitions="Auto,*,*" ColumnDefinitions="*,*,*" IsClippedToBounds="True" BackgroundColor="Black">
         <Button Text="Fetch Data" Grid.Row="0" Grid.ColumnSpan="3" x:Name="btnInput" Clicked="btnInput_Clicked"/>
         <ActivityIndicator Grid.Row="2" Margin="80" x:Name="activity" Color="White"/>
-        <CollectionView ItemsLayout="VerticalGrid, 2" Grid.Row="5" Grid.ColumnSpan="3" x:Name="albumCollection">
+        <CarouselView Grid.Row="1" x:Name="carousel" Grid.ColumnSpan="2">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame  WidthRequest="480" HeightRequest="480" CornerRadius="15" x:Name="frFrame">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="tapFrame" Tapped="tapFrame_Tapped"/>
+                            </Frame.GestureRecognizers>
+                            <Grid Padding="0">
+                                <Image Source="{Binding image_linkField}" Scale="1.4"
+                               Aspect="AspectFill" Grid.Row="0" Grid.RowSpan="2" TranslationX="0" TranslationY="-20"/>
+                                <VerticalStackLayout HeightRequest="250" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label Grid.Row="0" BackgroundColor="Black" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="30" VerticalTextAlignment="Center" TextColor="White"
+                        Text="{Binding titleField}"/>
+                                    <Label Grid.Row="2" 
+                        Text="{Binding priceField}" BackgroundColor="White" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"/>
+                                    <Label Grid.Row="1" BackgroundColor="White" HorizontalOptions="CenterAndExpand" TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
+                        Text="{Binding availabilityField}" TextTransform="Uppercase" FontSize="15"/>
+
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <CollectionView ItemsLayout="VerticalGrid, 2" Grid.Row="3" Grid.ColumnSpan="3" x:Name="albumCollection" TranslationY="0">
             <CollectionView.EmptyView>
                 <ContentView>
                     <StackLayout HorizontalOptions="CenterAndExpand"
@@ -38,15 +64,15 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding image_linkField}"
-                               Aspect="AspectFill" Grid.Row="0" Grid.RowSpan="3" />
-                            <Label BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="3" Opacity="0.6"/>
+                            <Image Source="{Binding image_linkField}" Scale="5"
+                               Aspect="AspectFit" Grid.Row="0" Grid.RowSpan="3" TranslationY="20" />
+                            <Label BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="3" Opacity="0.3"/>
                             <VerticalStackLayout Padding="5">
                                 <Label Grid.Row="0" HeightRequest="68" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="22" TextColor="White"
-                        Text="{Binding TextCut}"/>
+                        Text="{Binding titleField}"/>
                                 <Label Grid.Row="2" 
                         Text="{Binding priceField}" HeightRequest="22" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"/>
-                                <Label Grid.Row="1" HeightRequest="20" HorizontalOptions="CenterAndExpand" TextColor="{Binding stockColor}"
+                                <Label Grid.Row="1" HeightRequest="20" HorizontalOptions="CenterAndExpand" TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
                         Text="{Binding availabilityField}" TextTransform="Uppercase" FontSize="15"/>
                                 
                             </VerticalStackLayout>

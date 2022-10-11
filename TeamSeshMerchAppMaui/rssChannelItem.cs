@@ -25,7 +25,7 @@ namespace TeamSeshMerchAppMaui
                 Color c = new Color();
                 if (this.availabilityField == "out of stock")
                 {
-                    c =  Colors.Red;
+                    c =  Colors.DarkRed;
                 }
                 else
                 {
@@ -36,25 +36,6 @@ namespace TeamSeshMerchAppMaui
             set
             {
                 stockColor = value;
-            }
-        }
-        public string TextCut
-        {
-            get
-            {
-                try
-                {
-                    titleField = titleField.Remove(22);
-                    return titleField + " ...";
-                }
-                catch (Exception)
-                {
-                    return titleField;
-                }
-            }
-            set
-            {
-                TextCut = value;
             }
         }
     }
