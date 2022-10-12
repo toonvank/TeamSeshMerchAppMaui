@@ -7,25 +7,24 @@
     <Grid x:Name="viewGrid" RowDefinitions="Auto,*,*" ColumnDefinitions="*,*,*" IsClippedToBounds="True" BackgroundColor="Black">
         <Button Text="Fetch Data" Grid.Row="0" Grid.ColumnSpan="3" x:Name="btnInput" Clicked="btnInput_Clicked"/>
         <ActivityIndicator Grid.Row="2" Margin="80" x:Name="activity" Color="White"/>
-        <CarouselView Grid.Row="1" x:Name="carousel" Grid.ColumnSpan="2">
+        <CarouselView Grid.Row="1" x:Name="carousel" Grid.ColumnSpan="3">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Frame  WidthRequest="480" HeightRequest="480" CornerRadius="15" x:Name="frFrame">
+                        <Frame WidthRequest="480" HeightRequest="480" CornerRadius="15" x:Name="frFrame">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer x:Name="tapFrame" Tapped="tapFrame_Tapped"/>
                             </Frame.GestureRecognizers>
                             <Grid Padding="0">
                                 <Image Source="{Binding image_linkField}" Scale="1.4"
                                Aspect="AspectFill" Grid.Row="0" Grid.RowSpan="2" TranslationX="0" TranslationY="-20"/>
-                                <VerticalStackLayout HeightRequest="250" HorizontalOptions="Center" VerticalOptions="Center">
-                                    <Label Grid.Row="0" BackgroundColor="Black" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="30" VerticalTextAlignment="Center" TextColor="White"
+                                <VerticalStackLayout HeightRequest="250" HorizontalOptions="Center" VerticalOptions="Start">
+                                    <Label Grid.Row="0" x:Name="lblTitle" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="30" VerticalTextAlignment="Center" FontAutoScalingEnabled="True" TextColor="Gold"
                         Text="{Binding titleField}"/>
-                                    <Label Grid.Row="2" 
-                        Text="{Binding priceField}" BackgroundColor="White" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"/>
-                                    <Label Grid.Row="1" BackgroundColor="White" HorizontalOptions="CenterAndExpand" TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
+                                    <Label Grid.Row="2" Margin="0,170,0,0"
+                        Text="{Binding priceField}" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"/>
+                                    <Label Grid.Row="1" HorizontalOptions="CenterAndExpand" TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
                         Text="{Binding availabilityField}" TextTransform="Uppercase" FontSize="15"/>
-
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>

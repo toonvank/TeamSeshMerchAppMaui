@@ -12,10 +12,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>TeamSeshMerchAppMaui</ApplicationTitle>
+		<ApplicationTitle>SeshMerch</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.teamseshmerchappmaui</ApplicationId>
+		<ApplicationId>com.seshwoods.teamseshmerchappmaui</ApplicationId>
 		<ApplicationIdGuid>9EE2385B-3DBA-4D89-9726-91D55EA10701</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -32,14 +32,17 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#000000" TintColor="White" />
+
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" BaseSize="6000,6000" Color="#000000" TintColor="White" />
+
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" />
+		
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -47,6 +50,11 @@
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
+
+	<!--<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon.svg" />
+	  <None Remove="Resources\AppIcon\appiconfg.svg" />
+	  <None Remove="Resources\Splash\splash.svg" /></ItemGroup>-->
 
 	<ItemGroup>
 	  <PackageReference Include="CodeHollow.FeedReader" Version="1.2.4" />
