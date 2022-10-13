@@ -10,5 +10,6 @@ namespace TeamSeshMerchAppMaui
     {
         public static List<rssChannelItem> rssChannel = new List<rssChannelItem>();
         public static List<rssChannelItem> passedAlbum = new List<rssChannelItem>();
+        public static List<rssChannelItem> filteredList = new List<rssChannelItem>();
     }
 }

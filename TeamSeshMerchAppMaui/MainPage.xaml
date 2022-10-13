@@ -5,13 +5,16 @@
              x:Class="TeamSeshMerchAppMaui.MainPage">
 
     <Grid x:Name="viewGrid" RowDefinitions="Auto,*,*" ColumnDefinitions="*,*,*" IsClippedToBounds="True" BackgroundColor="Black">
-        <Button Text="Fetch Data" Grid.Row="0" Grid.ColumnSpan="3" x:Name="btnInput" Clicked="btnInput_Clicked"/>
+        <Button Text="Fetch Data"  Grid.Row="0" Grid.ColumnSpan="3" x:Name="btnInput" Clicked="btnInput_Clicked"/>
+        <HorizontalStackLayout >
+            <Button Text="Filter" Clicked="btnFilter_Clicked" x:Name="btnFilter"/>
+        </HorizontalStackLayout>
         <ActivityIndicator Grid.Row="2" Margin="80" x:Name="activity" Color="White"/>
-        <CarouselView Grid.Row="1" x:Name="carousel" Grid.ColumnSpan="2">
+        <CarouselView Grid.Row="1" x:Name="carousel" Grid.ColumnSpan="3">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Frame  WidthRequest="480" HeightRequest="480" CornerRadius="15" x:Name="frFrame">
+                        <Frame  WidthRequest="550" HeightRequest="480" CornerRadius="15" x:Name="frFrame">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer x:Name="tapFrame" Tapped="tapFrame_Tapped"/>
                             </Frame.GestureRecognizers>

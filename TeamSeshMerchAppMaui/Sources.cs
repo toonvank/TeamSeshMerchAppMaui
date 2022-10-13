@@ -13,6 +13,7 @@ namespace TeamSeshMerchAppMaui
             List<string> links = new List<string>();
             links.Add("https://teamsesh.bigcartel.com/products.xml");
             links.Add("https://teamseshmerchscraps.bigcartel.com/products.xml");
+            links.Add("https://www.supporttrees.com/products.xml");
             return links;
         }
     }

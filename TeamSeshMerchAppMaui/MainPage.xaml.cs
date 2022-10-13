@@ -34,5 +34,19 @@ public partial class MainPage : ContentPage
         //v.Opacity = 0;
         await Shell.Current.GoToAsync(nameof(DetailPage));
     }
+
+    private async void btnFilter_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(FilterPage));
+
+        //Xamarin.CommunityToolkit.UI.Views.Popup popup = CreatePopupView(viewModelType); // or just Popup View object
+
+        //App.Current.MainPage.Navigation.ShowPopup(popup);
+
+        //var result = await (popup.BindingContext as BaseViewModel).InitializeWithReturnAsync(parameter);
+        //popup.Dismiss(null);
+
+        //return result;
+    }
 }
 

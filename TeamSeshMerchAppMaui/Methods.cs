@@ -41,5 +41,12 @@ namespace TeamSeshMerchAppMaui
                 await ReadXml(s.AddLinks()[i]);
             }
         }
+        public List<string> availability()
+        {
+            var availability = new List<string>();
+            availability.Add("out of stock");
+            availability.Add("in stock");
+            return availability;
+        }
     }
 }
