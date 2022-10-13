@@ -34,5 +34,10 @@ public partial class MainPage : ContentPage
         //v.Opacity = 0;
         await Shell.Current.GoToAsync(nameof(DetailPage));
     }
+
+    private async void btnFilter_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(FilterPage));
+    }
 }
 

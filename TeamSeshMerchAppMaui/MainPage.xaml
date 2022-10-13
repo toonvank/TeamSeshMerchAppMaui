@@ -6,6 +6,7 @@
 
     <Grid x:Name="viewGrid" RowDefinitions="Auto,*,*" ColumnDefinitions="*,*,*" IsClippedToBounds="True" BackgroundColor="Black">
         <Button Text="Fetch Data" Grid.Row="0" Grid.ColumnSpan="3" x:Name="btnInput" Clicked="btnInput_Clicked"/>
+        <Button x:Name="btnFilter" Clicked="btnFilter_Clicked" Text="Filter"></Button>
         <ActivityIndicator Grid.Row="2" Margin="80" x:Name="activity" Color="White"/>
         <CarouselView Grid.Row="1" x:Name="carousel" Grid.ColumnSpan="3">
             <CarouselView.ItemTemplate>
