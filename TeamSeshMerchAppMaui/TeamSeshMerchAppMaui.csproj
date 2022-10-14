@@ -57,7 +57,6 @@
 	<ItemGroup>
 	  <PackageReference Include="CodeHollow.FeedReader" Version="1.2.4" />
 	  <PackageReference Include="EcoCore" Version="7.0.0.14388" />
-	  <PackageReference Include="Sentry" Version="3.22.0" />
 	</ItemGroup>
 
 	<ItemGroup>
