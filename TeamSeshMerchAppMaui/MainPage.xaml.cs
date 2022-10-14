@@ -1,14 +1,34 @@
 ﻿using Microsoft.Maui.Controls;
+//using static Android.Content.ClipData;
 
 namespace TeamSeshMerchAppMaui;
 
 public partial class MainPage : ContentPage
 {
+    Methods m = new Methods();
+    Button b = new Button();
     public MainPage()
     {
         InitializeComponent();
-        Button b = new Button();
         btnInput_Clicked(b, System.EventArgs.Empty);
+        carouselSwitch(b, System.EventArgs.Empty);
+    }
+    private async Task WaitAndExecute(int milisec,Action actionToExecute)
+    {
+        await Task.Delay(milisec);
+        actionToExecute();
+        carouselSwitch(b, System.EventArgs.Empty);
+    }
+    private async void carouselSwitch(object sender, EventArgs e)
+    {
+        try
+        {
+            await WaitAndExecute(4000, () => carousel.Position = carousel.Position+1);
+        }
+        catch (Exception)
+        {
+            carousel.Position = 0;
+        }
     }
 
     private async void btnInput_Clicked(object sender, EventArgs e)
@@ -19,34 +39,106 @@ public partial class MainPage : ContentPage
         albumCollection.ItemsSource = DataPass.rssChannel;
         activity.IsRunning = false;
         carousel.ItemsSource = DataPass.rssChannel;
+        grStock.ItemsSource = m.availability();
+        grStock.ItemsSource.Add("all");
+        producNumber.Text = $"{DataPass.rssChannel.Count}";
     }
 
     private async void tapFrame_Tapped(object sender, EventArgs e)
     {
-        DataPass.passedAlbum.Clear();
-        Frame bs = (Frame)sender;
-        rssChannelItem a = (rssChannelItem)bs.BindingContext;
-        rssChannelItem album = new rssChannelItem();
-        album = a;
-        DataPass.passedAlbum.Add(album);
-        //Grid g = (Grid)bs.Children[0];
-        //Label v = (Label)g.Children[1];
-        //v.Opacity = 0;
-        await Shell.Current.GoToAsync(nameof(DetailPage));
+        if (absLayout.IsVisible == false)
+        {
+            DataPass.passedAlbum.Clear();
+            Frame bs = (Frame)sender;
+            rssChannelItem a = (rssChannelItem)bs.BindingContext;
+            rssChannelItem album = new rssChannelItem();
+            album = a;
+            DataPass.passedAlbum.Add(album);
+            //Grid g = (Grid)bs.Children[0];
+            //Label v = (Label)g.Children[1];
+            //v.Opacity = 0;
+            await Shell.Current.GoToAsync(nameof(DetailPage));
+        }
+        else
+        {
+            await absLayout.TranslateTo(0, 40, 500);
+            absLayout.IsVisible = false;
+        }
     }
 
     private async void btnFilter_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(FilterPage));
+        if (absLayout.IsVisible == true)
+        {
+            await absLayout.TranslateTo(0, 40, 500);
+            absLayout.IsVisible = false;
+            
+        }
+        else
+        {
+            absLayout.IsVisible = true;
+            await absLayout.TranslateTo(0, -40, 500);
+        }
+        
+    }
+    private async void grStock_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (grStock.SelectedIndex != 2)
+        {
+            carousel.ItemsSource =
+                from item in DataPass.rssChannel
+                where item.availabilityField == m.availability()[grStock.SelectedIndex]
+                select item;
+            albumCollection.ItemsSource = carousel.ItemsSource;
+            await absLayout.TranslateTo(0, 40, 500);
+            absLayout.IsVisible = false;
+        }
+        else
+        {
+            albumCollection.ItemsSource = DataPass.rssChannel;
+            carousel.ItemsSource = DataPass.rssChannel;
+        }
+        grStock.TextColor = Colors.White;
+    }
 
-        //Xamarin.CommunityToolkit.UI.Views.Popup popup = CreatePopupView(viewModelType); // or just Popup View object
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        carousel.ItemsSource =
+            from item in DataPass.rssChannel
+            where int.Parse(item.priceField.Substring(0, item.priceField.IndexOf("."))) > int.Parse(minPrice.Text)
+            && int.Parse(item.priceField.Substring(0, item.priceField.IndexOf("."))) < int.Parse(maxPrice.Text)
+            select item;
+        albumCollection.ItemsSource = carousel.ItemsSource;
+        absLayout.IsVisible = false;
+    }
 
-        //App.Current.MainPage.Navigation.ShowPopup(popup);
+    private async void btnReset_Clicked(object sender, EventArgs e)
+    {
+        Button b = new Button();
+        btnInput_Clicked(b, System.EventArgs.Empty);
+        await absLayout.TranslateTo(0, 40, 500);
+        absLayout.IsVisible = false;
+    }
 
-        //var result = await (popup.BindingContext as BaseViewModel).InitializeWithReturnAsync(parameter);
-        //popup.Dismiss(null);
+    private async void btnBag_Clicked(object sender, EventArgs e)
+    {
+        int products = DataPass.rssChannel.Count;
+        int notav = 0;
+        int available = 0;
+        foreach (var item in DataPass.rssChannel)
+        {
+            if (item.availabilityField == "out of stock")
+            {
+                notav++;
+            }
+            else
+            {
+                available++;
+            }
+        }
 
-        //return result;
+        string show = $"There are currently {products} products online.\n{notav} out of stock and {available} available.";
+        await DisplayAlert("ProductInfo", show, "OK");
     }
 }
 

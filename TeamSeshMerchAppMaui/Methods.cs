@@ -35,6 +35,7 @@ namespace TeamSeshMerchAppMaui
         }
         public async Task FillProductList()
         {
+            DataPass.rssChannel.Clear();
             Sources s = new Sources();
             for (int i = 0; i < s.AddLinks().Count; i++)
             {
@@ -46,6 +47,7 @@ namespace TeamSeshMerchAppMaui
             var availability = new List<string>();
             availability.Add("out of stock");
             availability.Add("in stock");
+            availability.Add("all");
             return availability;
         }
     }
