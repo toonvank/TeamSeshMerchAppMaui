@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeamSeshMerchAppMaui.DetailPage"
              xmlns:item="clr-namespace:TeamSeshMerchAppMaui"
-             Title="DetailPage">
+             Title="DetailPage"
+             Shell.NavBarIsVisible="True">
     <Grid RowDefinitions="Auto,Auto,*" IsClippedToBounds="True">
 
         <CollectionView Grid.Row="2" x:Name="albumCollection">
@@ -23,11 +24,6 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="item:rssChannelItem" x:Name="dtaData">
                     <VerticalStackLayout>
-                        <Label>
-                            <Label.Text>
-                                <Binding Path="idField" />
-                            </Label.Text>
-                        </Label>
                         <Label>
                             <Label.Text>
                                 <Binding Path="titleField" />

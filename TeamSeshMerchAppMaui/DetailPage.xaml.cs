@@ -6,6 +6,6 @@ public partial class DetailPage : ContentPage
 	{
 		InitializeComponent();
 		albumCollection.ItemsSource = DataPass.passedAlbum;
-
+		this.Title = DataPass.passedAlbum[0].titleField;
     }
 }
