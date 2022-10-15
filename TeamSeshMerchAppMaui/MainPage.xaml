@@ -13,26 +13,26 @@
                 <ImageButton Source="bag.png" x:Name="btnBag" Clicked="btnBag_Clicked" HeightRequest="30" WidthRequest="40"></ImageButton>
             </HorizontalStackLayout>
             <Picker SelectedIndexChanged="grStock_SelectedIndexChanged" Title="🝖"  Margin="5,0,0,0" FontSize="22" TitleColor="White" x:Name="grStock"/>
+            <ImageButton HeightRequest="20" WidthRequest="40" Clicked="btnSource_Clicked" x:Name="btnSource" Source="src.png" />
         </HorizontalStackLayout>
         <CarouselView IsBounceEnabled="True" Grid.Row="1" x:Name="carousel" Grid.ColumnSpan="3">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Frame  WidthRequest="550" HeightRequest="480" CornerRadius="15" x:Name="frFrame">
+                        <Frame WidthRequest="550" HeightRequest="480" CornerRadius="15" x:Name="frFrame">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer x:Name="tapFrame" Tapped="tapFrame_Tapped"/>
                             </Frame.GestureRecognizers>
                             <Grid Padding="0">
-                                <Image Source="{Binding image_linkField}" Scale="1.4"
-                               Aspect="AspectFill" Grid.Row="0" Grid.RowSpan="2" TranslationX="0" TranslationY="-20"/>
-                                <VerticalStackLayout HeightRequest="250" HorizontalOptions="Center" VerticalOptions="Center">
-                                    <Label Grid.Row="0" BackgroundColor="Black" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="30" VerticalTextAlignment="Center" TextColor="White"
+                                <Image Source="{Binding image_linkField}" Scale="1.2"
+                               Aspect="AspectFill" Grid.Row="0" Grid.RowSpan="2" TranslationX="0" TranslationY="-50"/>
+                                <VerticalStackLayout x:Name="stckCol" HeightRequest="250" HorizontalOptions="Center" VerticalOptions="Start">
+                                    <Label FontAutoScalingEnabled="True" BackgroundColor="Black" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="18" VerticalTextAlignment="Center" TextColor="White"
                         Text="{Binding titleField}"/>
-                                    <Label Grid.Row="2" 
+                                    <Label
                         Text="{Binding priceField}" BackgroundColor="White" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"/>
-                                    <Label Grid.Row="1" BackgroundColor="White" HorizontalOptions="CenterAndExpand" TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
-                        Text="{Binding availabilityField}" TextTransform="Uppercase" FontSize="15"/>
-
+                                    <Label BackgroundColor="White" HorizontalOptions="CenterAndExpand" TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
+                        Text="{Binding availabilityField}" TextTransform="Uppercase"  FontSize="15" TranslationX="0" TranslationY="240"/>
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>
@@ -40,6 +40,10 @@
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
+        <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="1" Grid.ColumnSpan="5">
+            <Button Text="&#x3C;" x:Name="skipBack" VerticalOptions="Center" Clicked="skipBack_Clicked" TextColor="DarkSlateGray" BackgroundColor="LightGray" Padding="0,0,0,0" Margin="0,0,320,0" WidthRequest="24" FontSize="21" FontAttributes="Bold" ></Button>
+            <Button Text="&#62;" x:Name="skipFrwd" VerticalOptions="Center" Clicked="skipFrwd_Clicked" TextColor="DarkSlateGray" BackgroundColor="LightGray" Padding="0,0,0,0" WidthRequest="24" FontSize="21" FontAttributes="Bold"></Button>
+        </HorizontalStackLayout>
         <CollectionView ItemsLayout="VerticalGrid, 2" Grid.Row="3" Grid.ColumnSpan="3" x:Name="albumCollection" TranslationY="0">
             <CollectionView.EmptyView>
                 <ContentView>
@@ -75,7 +79,7 @@
                                Aspect="AspectFit" Grid.Row="0" Grid.RowSpan="3" TranslationY="20" />
                             <Label BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="3" Opacity="0.3"/>
                             <VerticalStackLayout Padding="5">
-                                <Label Grid.Row="0" HeightRequest="68" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="22" TextColor="White"
+                                <Label Grid.Row="0" HeightRequest="68" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="20" TextColor="White"
                         Text="{Binding titleField}"/>
                                 <Label Grid.Row="2" 
                         Text="{Binding priceField}" HeightRequest="22" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18" TextColor="White"/>
@@ -113,6 +117,30 @@
                         <Button WidthRequest="240" Text="reset products" Margin="0,10,0,0" x:Name="btnReset" Clicked="btnReset_Clicked"></Button>
                     </VerticalStackLayout>
                 </FlexLayout>
+            </Grid>
+        </AbsoluteLayout>
+
+        <AbsoluteLayout IsVisible="false" x:Name="absLayout2" Grid.Row="5" Grid.ColumnSpan="3" HeightRequest="300" WidthRequest="360" Margin="0,230,0,0">
+            <BoxView Color="Black"
+             CornerRadius="40"
+             WidthRequest="360"
+             HeightRequest="300"
+             VerticalOptions="End"
+             HorizontalOptions="Center" >
+            </BoxView>
+
+            <Grid Padding="15"  WidthRequest="360" Margin="0,25,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="70" />
+                </Grid.RowDefinitions>
+                <VerticalStackLayout>
+                    <Label HorizontalTextAlignment="Center" TextColor="White" Text="Select sources" />
+                    <VerticalStackLayout x:Name="itemContent">
+                    </VerticalStackLayout>
+                    <Button x:Name="btnSave" Clicked="btnSave_Clicked" Text="Save selection"/>
+                </VerticalStackLayout>
             </Grid>
         </AbsoluteLayout>
         <ActivityIndicator Grid.RowSpan="4" Grid.ColumnSpan="5" x:Name="activity" Color="White"/>

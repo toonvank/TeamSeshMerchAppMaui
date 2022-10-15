@@ -42,6 +42,15 @@ namespace TeamSeshMerchAppMaui
                 await ReadXml(s.AddLinks()[i]);
             }
         }
+        public async Task FillProductListCustSource()
+        {
+            DataPass.rssChannel.Clear();
+            Sources s = new Sources();
+            foreach (var item in DataPass.whichOneRemove)
+            {
+                await ReadXml(s.AddLinks()[item]);
+            }
+        }
         public List<string> availability()
         {
             var availability = new List<string>();

@@ -7,6 +7,7 @@ public partial class MainPage : ContentPage
 {
     Methods m = new Methods();
     Button b = new Button();
+    Sources s = new Sources();
     public MainPage()
     {
         InitializeComponent();
@@ -34,7 +35,6 @@ public partial class MainPage : ContentPage
     private async void btnInput_Clicked(object sender, EventArgs e)
     {
         activity.IsRunning = true;
-        Methods m = new Methods();
         await m.FillProductList();
         albumCollection.ItemsSource = DataPass.rssChannel;
         activity.IsRunning = false;
@@ -42,11 +42,12 @@ public partial class MainPage : ContentPage
         grStock.ItemsSource = m.availability();
         grStock.ItemsSource.Add("all");
         producNumber.Text = $"{DataPass.rssChannel.Count}";
+        fillupSources();
     }
 
     private async void tapFrame_Tapped(object sender, EventArgs e)
     {
-        if (absLayout.IsVisible == false)
+        if (absLayout.IsVisible == false && absLayout2.IsVisible == false)
         {
             DataPass.passedAlbum.Clear();
             Frame bs = (Frame)sender;
@@ -139,6 +140,67 @@ public partial class MainPage : ContentPage
 
         string show = $"There are currently {products} products online.\n{notav} out of stock and {available} available.";
         await DisplayAlert("ProductInfo", show, "OK");
+    }
+
+    private async void btnSource_Clicked(object sender, EventArgs e)
+    {
+        
+        if (absLayout2.IsVisible == true)
+        {
+            await absLayout2.TranslateTo(0, 40, 500);
+            absLayout2.IsVisible = false;
+
+        }
+        else
+        {
+            absLayout2.IsVisible = true;
+            await absLayout2.TranslateTo(0, -40, 500);
+        }
+    }
+    private void fillupSources()
+    {
+        foreach (var item in s.AddLinks())
+        {
+            RadioButton b = new RadioButton();
+            string sesh = item.Substring(0, item.IndexOf("/products.xml"));
+            b.Content = sesh.Remove(0,8);
+            b.CheckedChanged += OnColorsRadioButtonCheckedChanged;
+            b.TextColor = Colors.White;
+            itemContent.Add(b);
+        }
+    }
+    void OnColorsRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        RadioButton s = sender as RadioButton;
+        VerticalStackLayout v = s.Parent as VerticalStackLayout;
+        if (s.IsChecked == true)
+        {
+            DataPass.whichOneRemove.Add(v.Children.IndexOf(s));
+        }
+    }
+
+    private async void btnSave_Clicked(object sender, EventArgs e)
+    {
+        activity.IsRunning = true;
+        await m.FillProductListCustSource();
+        albumCollection.ItemsSource = DataPass.rssChannel;
+        activity.IsRunning = false;
+        carousel.ItemsSource = DataPass.rssChannel;
+        grStock.ItemsSource = m.availability();
+        grStock.ItemsSource.Add("all");
+        producNumber.Text = $"{DataPass.rssChannel.Count}";
+        await absLayout2.TranslateTo(0, 40, 500);
+        absLayout2.IsVisible = false;
+    }
+
+    private void skipBack_Clicked(object sender, EventArgs e)
+    {
+        carousel.Position = carousel.Position -1;
+    }
+
+    private void skipFrwd_Clicked(object sender, EventArgs e)
+    {
+        carousel.Position = carousel.Position + 1;
     }
 }
 

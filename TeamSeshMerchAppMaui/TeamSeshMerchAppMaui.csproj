@@ -52,6 +52,7 @@
 	  <None Remove="Resources\Images\bag.png" />
 	  <None Remove="Resources\Images\fetch.png" />
 	  <None Remove="Resources\Images\moneyfilter.png" />
+	  <None Remove="Resources\Images\src.png" />
 	</ItemGroup>
 
 	<ItemGroup>
