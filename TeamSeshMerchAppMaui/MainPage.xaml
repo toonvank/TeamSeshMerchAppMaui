@@ -28,8 +28,8 @@
                                     <Label FontAutoScalingEnabled="True" BackgroundColor="Black" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="18" VerticalTextAlignment="Center" TextColor="White"
                         Text="{Binding titleField}"/>
                                     <Label
-                        Text="{Binding priceField}" BackgroundColor="White" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"/>
-                                    <Label BackgroundColor="White" HorizontalOptions="CenterAndExpand" TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
+                        Text="{Binding priceField}" BackgroundColor="Black" TextColor="White" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"/>
+                                    <Label BackgroundColor="Black" Padding="2" HorizontalOptions="CenterAndExpand" TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
                         Text="{Binding availabilityField}" TextTransform="Uppercase"  FontSize="15" TranslationX="0" TranslationY="240"/>
                                 </VerticalStackLayout>
                             </Grid>
@@ -39,7 +39,7 @@
             </CarouselView.ItemTemplate>
         </CarouselView>
         <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="1" Grid.ColumnSpan="5">
-            <Button Text="&#x3C;" x:Name="skipBack" VerticalOptions="Center" Clicked="skipBack_Clicked" TextColor="DarkSlateGray" BackgroundColor="LightGray" Padding="0,0,0,0" Margin="0,0,320,0" WidthRequest="24" FontSize="21" FontAttributes="Bold" ></Button>
+            <Button Text="&#x3C;" x:Name="skipBack" VerticalOptions="Center" Clicked="skipBack_Clicked" TextColor="DarkSlateGray" BackgroundColor="LightGray" Padding="0,0,0,0" Margin="0,0,290,0" WidthRequest="24" FontSize="21" FontAttributes="Bold" ></Button>
             <Button Text="&#62;" x:Name="skipFrwd" VerticalOptions="Center" Clicked="skipFrwd_Clicked" TextColor="DarkSlateGray" BackgroundColor="LightGray" Padding="0,0,0,0" WidthRequest="24" FontSize="21" FontAttributes="Bold"></Button>
         </HorizontalStackLayout>
         <CollectionView ItemsLayout="VerticalGrid, 2" Grid.Row="3" Grid.ColumnSpan="3" x:Name="albumCollection" TranslationY="0">

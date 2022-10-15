@@ -8,6 +8,7 @@ public partial class MainPage : ContentPage
     Methods m = new Methods();
     Button b = new Button();
     Sources s = new Sources();
+    int newOrLessitems = 0;
     public MainPage()
     {
         InitializeComponent();
@@ -41,7 +42,10 @@ public partial class MainPage : ContentPage
         carousel.ItemsSource = DataPass.rssChannel;
         grStock.ItemsSource = m.availability();
         grStock.ItemsSource.Add("all");
+        int producCount = Preferences.Default.Get("productCount", 0);
+        newOrLessitems = DataPass.rssChannel.Count - producCount;
         producNumber.Text = $"{DataPass.rssChannel.Count}";
+        Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
         fillupSources();
     }
 
@@ -137,8 +141,16 @@ public partial class MainPage : ContentPage
                 available++;
             }
         }
-
-        string show = $"There are currently {products} products online.\n{notav} out of stock and {available} available.";
+        string text = string.Empty;
+        if (newOrLessitems >= 0)
+        {
+            text = $"{newOrLessitems} new items since you opened the app last time.";
+        }
+        else
+        {
+            text = $"{newOrLessitems} items have been removed since you opened the app last time.";
+        }
+        string show = $"There are currently {products} products online.\n{notav} out of stock and {available} available.\n{text}";
         await DisplayAlert("ProductInfo", show, "OK");
     }
 
@@ -195,12 +207,27 @@ public partial class MainPage : ContentPage
 
     private void skipBack_Clicked(object sender, EventArgs e)
     {
-        carousel.Position = carousel.Position -1;
+        try
+        {
+            carousel.Position = carousel.Position - 1;
+        }
+        catch (Exception)
+        {
+
+            carousel.Position = DataPass.rssChannel.Count ;
+        }
     }
 
     private void skipFrwd_Clicked(object sender, EventArgs e)
     {
-        carousel.Position = carousel.Position + 1;
+        try
+        {
+            carousel.Position = carousel.Position + 1;
+        }
+        catch (Exception)
+        {
+            carousel.Position = 0;
+        }
     }
 }
 
