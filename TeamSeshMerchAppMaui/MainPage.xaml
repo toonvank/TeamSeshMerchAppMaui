@@ -76,10 +76,10 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Image Source="{Binding image_linkField}" Scale="5"
-                               Aspect="AspectFit" Grid.Row="0" Grid.RowSpan="3" TranslationY="20" />
+                               Aspect="AspectFit" Grid.Row="0" Grid.RowSpan="3" TranslationY="5" />
                             <Label BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="3" Opacity="0.3"/>
                             <VerticalStackLayout Padding="5">
-                                <Label Grid.Row="0" HeightRequest="68" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="20" TextColor="White"
+                                <Label Grid.Row="0" HeightRequest="60" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="20" TextColor="White"
                         Text="{Binding titleField}"/>
                                 <Label Grid.Row="2" 
                         Text="{Binding priceField}" HeightRequest="22" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18" TextColor="White"/>
