@@ -25,10 +25,11 @@ When you open the app it fetches new products. This should only take a few secon
   </tr>
 </table> 
 <h2>Extra info</h2>
-This app <b>requires WIFI</b> for updating the product list. This auto happens on startup or can be manually done by pressing the first button in the navbar. 
+This app <b>requires WIFI</b> for updating the product list. This auto happens on startup or can be manually done by pressing the first button in the navbar. There is no intent to copy or mimic the functionalities of the original stores. This is merely a client that uses the xml data of the stores. This app was only a practice exercise in how to load external data into a .net app and how to use other techniques.
 <h2>Screenshots</h2>
 <div style="display: flex;">
- <img style="height:600px; width:auto;" src="https://user-images.githubusercontent.com/61182641/193816901-bf93a45c-f53e-49e8-bc3d-39a8f23f5d47.PNG">
-<img style="height:600px; width:auto;" src="https://user-images.githubusercontent.com/61182641/193816907-c8662775-91b4-4320-94fc-b68bc503c2fd.jpg">
-<img style="height:600px; width:auto;" src="https://user-images.githubusercontent.com/61182641/193816918-f12730bc-9954-4d0b-a444-192358032e4c.jpg">
+ <img style="height:600px; width:auto;" src="https://user-images.githubusercontent.com/61182641/196041940-3ac4c3a2-d29f-420b-a359-2ced3202e22f.png">
+<img style="height:600px; width:auto;" src="https://user-images.githubusercontent.com/61182641/196041945-e91bcab0-08c7-4b50-824a-ed068a10dffa.png">
+<img style="height:600px; width:auto;" src="https://user-images.githubusercontent.com/61182641/196041951-5eedeba0-8787-4c30-80c4-3d3c158c431e.png">
+<img style="height:600px; width:auto;" src="https://user-images.githubusercontent.com/61182641/196041952-c4a89b9d-7684-4ec5-81db-d8e6af3887c6.png">
 </div>
