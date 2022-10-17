@@ -10,9 +10,9 @@ When you open the app it fetches new products. This should only take a few secon
 <p>The navbar exists of 5 icons with each own functionalities.</p></br>
  <table>
   <tr>
-    <th><img style="height:50px; width:auto;" src="https://user-images.githubusercontent.com/61182641/196042183-73b16d7f-b57e-40e0-8968-9e2152ed5826.png"></th>
     <th><img style="height:50px; width:auto;" src="https://user-images.githubusercontent.com/61182641/196042189-c961f48f-3dd5-4e6e-ae12-b680ab2c09b3.png"></th>
     <th><img style="height:50px; width:auto;" src="https://user-images.githubusercontent.com/61182641/196042190-3402d50c-459a-47c7-9da3-5f5e9dcffbb3.png"></th>
+    <th><img style="height:50px; width:auto;" src="https://user-images.githubusercontent.com/61182641/196042183-73b16d7f-b57e-40e0-8968-9e2152ed5826.png"></th>
     <th>Filter icon</th>
     <th><img style="height:50px; width:auto;" src="https://user-images.githubusercontent.com/61182641/196042191-326f481a-f1da-4558-b2f3-97a89eb47e35.png"></th>
   </tr>
