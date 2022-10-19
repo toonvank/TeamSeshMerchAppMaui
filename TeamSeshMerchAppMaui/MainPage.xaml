@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:item="clr-namespace:TeamSeshMerchAppMaui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="TeamSeshMerchAppMaui.MainPage">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#131212" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
 
     <Grid x:Name="viewGrid" RowDefinitions="Auto,*,*" ColumnDefinitions="*,*,*" IsClippedToBounds="True" BackgroundColor="Black">
         <HorizontalStackLayout  Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="Black"  HorizontalOptions="CenterAndExpand">
@@ -10,10 +14,30 @@
             <ImageButton HeightRequest="25" Margin="0,0,11,0" WidthRequest="40" Clicked="btnFilter_Clicked" Source="moneyfilter.png" />
             <Label TextColor="White" Margin="0,0,-27,0" VerticalOptions="Center" x:Name="producNumber" Text="25" FontSize="12" TranslationY="3"></Label>
             <ImageButton Source="bag.png" x:Name="btnBag" Clicked="btnBag_Clicked" HeightRequest="30" WidthRequest="40"></ImageButton>
-            <Picker SelectedIndexChanged="grStock_SelectedIndexChanged" Title="🝖"  Margin="5,0,0,0" FontSize="22" TitleColor="White" x:Name="grStock"/>
             <ImageButton HeightRequest="20" WidthRequest="40" Clicked="btnSource_Clicked" x:Name="btnSource" Source="src.png" />
+            <Picker SelectedIndexChanged="grCurrency_SelectedIndexChanged" Title="€£$" SelectedIndex="2" Margin="10,0,0,0" FontSize="15" TitleColor="White" x:Name="grCurrency">
+                <Picker.Items>
+                    <x:String>EUR</x:String>
+                    <x:String>GBP</x:String>
+                    <x:String>USD</x:String>
+                </Picker.Items>
+            </Picker>
+            <Picker SelectedIndexChanged="grStock_SelectedIndexChanged" Title="🝖"  Margin="10,0,0,0" FontSize="15" TitleColor="White" x:Name="grStock"/>
         </HorizontalStackLayout>
         <CarouselView IsBounceEnabled="True" Grid.Row="1" x:Name="carousel" Grid.ColumnSpan="3">
+            <CarouselView.EmptyView>
+                <ContentView>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                        <Label Text="No results matched your filter."
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </ContentView>
+            </CarouselView.EmptyView>
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>

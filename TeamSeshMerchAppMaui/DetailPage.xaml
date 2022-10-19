@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeamSeshMerchAppMaui.DetailPage"
              xmlns:item="clr-namespace:TeamSeshMerchAppMaui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title=""
              Shell.NavBarIsVisible="True">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#131212" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
     <Grid RowDefinitions="Auto,Auto,*" IsClippedToBounds="True">
         <CarouselView IsBounceEnabled="True" Grid.Row="1" HeightRequest="300" x:Name="crsImages" Grid.ColumnSpan="3" Loop="True">
             <CarouselView.ItemTemplate>

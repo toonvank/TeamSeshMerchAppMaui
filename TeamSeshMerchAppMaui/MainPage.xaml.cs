@@ -229,5 +229,31 @@ public partial class MainPage : ContentPage
             carousel.Position = 0;
         }
     }
+
+    private async void grCurrency_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        DataPass.currencyIndex = grCurrency.SelectedIndex;
+
+        albumCollection.ItemsSource = "";
+        carousel.ItemsSource = "";
+
+        activity.IsRunning = true;
+        await m.FillProductList();
+        albumCollection.ItemsSource = DataPass.rssChannel;
+        activity.IsRunning = false;
+        carousel.ItemsSource = DataPass.rssChannel;
+        grStock.ItemsSource = m.availability();
+        grStock.ItemsSource.Add("all");
+        int producCount = Preferences.Default.Get("productCount", 0);
+        newOrLessitems = DataPass.rssChannel.Count - producCount;
+        producNumber.Text = $"{DataPass.rssChannel.Count}";
+        Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
+        fillupSources();
+
+        albumCollection.ItemsSource = DataPass.rssChannel;
+        carousel.ItemsSource = DataPass.rssChannel;
+
+        grCurrency.TextColor = Colors.White;
+    }
 }
 

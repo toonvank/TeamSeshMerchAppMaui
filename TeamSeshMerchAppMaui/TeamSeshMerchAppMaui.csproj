@@ -12,10 +12,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>TeamSeshMerchAppMaui</ApplicationTitle>
+		<ApplicationTitle>TeamSeshMerch</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.teamseshmerchappmaui</ApplicationId>
+		<ApplicationId>com.seshwoods.teamseshmerch</ApplicationId>
 		<ApplicationIdGuid>9EE2385B-3DBA-4D89-9726-91D55EA10701</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -35,7 +35,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#131212" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#131212" Resize="false"/>
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#131212" BaseSize="140,140" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -57,7 +57,9 @@
 
 	<ItemGroup>
 	  <PackageReference Include="CodeHollow.FeedReader" Version="1.2.4" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.3.0" />
 	  <PackageReference Include="EcoCore" Version="7.0.0.14388" />
+	  <PackageReference Include="RestSharp" Version="108.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
