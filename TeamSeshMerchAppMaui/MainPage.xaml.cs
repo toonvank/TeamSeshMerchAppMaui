@@ -61,6 +61,8 @@ public partial class MainPage : ContentPage
         var detailss = JObject.Parse(content);
         var pleasee = details["result"];
         DataPass.gbpExchange = double.Parse(please.ToString());
+
+        grCurrency.SelectedIndex = Preferences.Default.Get("currency", 0);
     }
 
     private async void tapFrame_Tapped(object sender, EventArgs e)
@@ -268,6 +270,8 @@ public partial class MainPage : ContentPage
         carousel.ItemsSource = DataPass.rssChannel;
 
         grCurrency.TextColor = Colors.White;
+
+        Preferences.Default.Set("currency", grCurrency.SelectedIndex);
     }
 }
 
