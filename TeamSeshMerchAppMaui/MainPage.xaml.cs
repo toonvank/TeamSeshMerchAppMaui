@@ -1,4 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
+using Newtonsoft.Json.Linq;
+using System.Runtime.ConstrainedExecution;
 //using static Android.Content.ClipData;
 
 namespace TeamSeshMerchAppMaui;
@@ -47,6 +49,18 @@ public partial class MainPage : ContentPage
         producNumber.Text = $"{DataPass.rssChannel.Count}";
         Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
         fillupSources();
+
+        using var client = new HttpClient();
+        var content = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to=EUR");
+        var details = JObject.Parse(content);
+        var please = details["result"];
+        DataPass.eurExchange = double.Parse(please.ToString());
+
+        using var clientt = new HttpClient();
+        var contentt = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to=GBP");
+        var detailss = JObject.Parse(content);
+        var pleasee = details["result"];
+        DataPass.gbpExchange = double.Parse(please.ToString());
     }
 
     private async void tapFrame_Tapped(object sender, EventArgs e)

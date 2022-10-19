@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maui.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,6 @@ namespace TeamSeshMerchAppMaui
     public class rssChannelItem
     {
         private string priceField1;
-
         public int idField { get; set; }
         public string titleField { get; set; }
         public string descriptionField { get; set; }
@@ -20,12 +20,12 @@ namespace TeamSeshMerchAppMaui
                 double dbVal = double.Parse(strVal);
                 if (DataPass.currencyIndex == 0)
                 {
-                    dbVal = dbVal * 1.02367;
+                    dbVal = dbVal * DataPass.eurExchange;
                     strVal = $"{Math.Round(dbVal,2)} EUR";
                 }
                 else if (DataPass.currencyIndex == 1)
                 {
-                    dbVal = dbVal * 1.12320;
+                    dbVal = dbVal * DataPass.gbpExchange;
                     strVal = $"{Math.Round(dbVal, 2)} GBP";
                 }
                 else
