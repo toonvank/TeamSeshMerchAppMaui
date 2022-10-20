@@ -189,21 +189,25 @@ public partial class MainPage : ContentPage
     {
         foreach (var item in s.AddLinks())
         {
-            RadioButton b = new RadioButton();
+            CheckBox b = new CheckBox();
+            Label l = new Label();
+            HorizontalStackLayout h = new HorizontalStackLayout();
             string sesh = item.Substring(0, item.IndexOf("/products.xml"));
-            b.Content = sesh.Remove(0,8);
+            l.Text = sesh.Remove(0,8);
             b.CheckedChanged += OnColorsRadioButtonCheckedChanged;
-            b.TextColor = Colors.White;
-            itemContent.Add(b);
+            l.TextColor = Colors.White;
+            h.Add(b);
+            h.Add(l);
+            itemContent.Add(h);
         }
     }
     void OnColorsRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        RadioButton s = sender as RadioButton;
-        VerticalStackLayout v = s.Parent as VerticalStackLayout;
+        CheckBox s = sender as CheckBox;
+        HorizontalStackLayout r = s.Parent as HorizontalStackLayout;
         if (s.IsChecked == true)
         {
-            DataPass.whichOneRemove.Add(v.Children.IndexOf(s));
+            DataPass.whichOneRemove.Add(r.Children.IndexOf(s));
         }
     }
 

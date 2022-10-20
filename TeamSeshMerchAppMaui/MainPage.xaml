@@ -10,26 +10,26 @@
 
     <Grid x:Name="viewGrid" RowDefinitions="Auto,*,*" ColumnDefinitions="*,*,*" IsClippedToBounds="True" BackgroundColor="Black">
         <HorizontalStackLayout  Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="Black"  HorizontalOptions="CenterAndExpand">
-            <ImageButton HeightRequest="20" WidthRequest="30" x:Name="fetch" Clicked="fetch_Clicked"  Source="fetch.png"/>
-            <ImageButton HeightRequest="25" Margin="0,0,11,0" WidthRequest="40" Clicked="btnFilter_Clicked" Source="moneyfilter.png" />
-            <Label TextColor="White" Margin="0,0,-27,0" VerticalOptions="Center" x:Name="producNumber" Text="25" FontSize="12" TranslationY="3"></Label>
-            <ImageButton Source="bag.png" x:Name="btnBag" Clicked="btnBag_Clicked" HeightRequest="30" WidthRequest="40"></ImageButton>
-            <ImageButton HeightRequest="20" WidthRequest="40" Clicked="btnSource_Clicked" x:Name="btnSource" Source="src.png" />
-            <Picker SelectedIndexChanged="grCurrency_SelectedIndexChanged" Title="€£$" SelectedIndex="2" Margin="10,0,0,0" FontSize="15" TitleColor="White" x:Name="grCurrency">
+            <ImageButton HeightRequest="22"  Margin="5,0,0,0" WidthRequest="45" x:Name="fetch" Clicked="fetch_Clicked"  Source="fetch.png"/>
+            <ImageButton HeightRequest="22" Margin="5,0,0,0"  WidthRequest="45" Clicked="btnFilter_Clicked" Source="moneyfilter.png" />
+            <Label TextColor="White" Margin="15,-2,-30,0" VerticalOptions="Center" x:Name="producNumber" Text="25" FontSize="11" TranslationY="3"></Label>
+            <ImageButton Source="bag.png" x:Name="btnBag" Margin="0,-2,0,0" Clicked="btnBag_Clicked" HeightRequest="23" WidthRequest="46"></ImageButton>
+            <ImageButton HeightRequest="22" Margin="5,0,0,0" WidthRequest="46" Clicked="btnSource_Clicked" x:Name="btnSource" Source="src.png" />
+            <Picker WidthRequest="45" Margin="5,0,0,0" SelectedIndexChanged="grCurrency_SelectedIndexChanged" Title="€£$" SelectedIndex="2" FontSize="16" TitleColor="White" x:Name="grCurrency">
                 <Picker.Items>
                     <x:String>EUR</x:String>
                     <x:String>GBP</x:String>
                     <x:String>USD</x:String>
                 </Picker.Items>
             </Picker>
-            <Picker SelectedIndexChanged="grStock_SelectedIndexChanged" Title="🝖"  Margin="10,0,0,0" FontSize="15" TitleColor="White" x:Name="grStock"/>
+            <Picker WidthRequest="45" Margin="5,0,0,0"  SelectedIndexChanged="grStock_SelectedIndexChanged" Title="🝖" FontSize="16" TitleColor="White" x:Name="grStock"/>
         </HorizontalStackLayout>
         <CarouselView IsBounceEnabled="True" Grid.Row="1" x:Name="carousel" Grid.ColumnSpan="3">
             <CarouselView.EmptyView>
                 <ContentView>
                     <StackLayout HorizontalOptions="CenterAndExpand"
                              VerticalOptions="CenterAndExpand">
-                        <Label Text="No results matched your filter."
+                        <Label Text="Loading....."
                            Margin="10,25,10,10"
                            FontAttributes="Bold"
                            FontSize="18"
@@ -71,7 +71,7 @@
                 <ContentView>
                     <StackLayout HorizontalOptions="CenterAndExpand"
                              VerticalOptions="CenterAndExpand">
-                        <Label Text="No results matched your filter."
+                        <Label Text="Loading....."
                            Margin="10,25,10,10"
                            FontAttributes="Bold"
                            FontSize="18"
@@ -151,19 +151,12 @@
              HorizontalOptions="Center" >
             </BoxView>
 
-            <Grid Padding="15"  WidthRequest="360" Margin="0,25,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70" />
-                    <RowDefinition Height="70" />
-                    <RowDefinition Height="70" />
-                </Grid.RowDefinitions>
-                <VerticalStackLayout>
-                    <Label HorizontalTextAlignment="Center" TextColor="White" Text="Select sources" />
-                    <VerticalStackLayout x:Name="itemContent">
-                    </VerticalStackLayout>
-                    <Button x:Name="btnSave" Clicked="btnSave_Clicked" Text="Save selection"/>
+            <VerticalStackLayout WidthRequest="360" HeightRequest="300">
+                <Label HorizontalTextAlignment="Center" TextColor="White" Text="Select sources" />
+                <VerticalStackLayout x:Name="itemContent">
                 </VerticalStackLayout>
-            </Grid>
+                <Button x:Name="btnSave" Clicked="btnSave_Clicked" Text="Save selection"/>
+            </VerticalStackLayout>
         </AbsoluteLayout>
         <ActivityIndicator Grid.RowSpan="4" Grid.ColumnSpan="5" x:Name="activity" Color="White"/>
     </Grid>

@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>TeamSeshMerch</ApplicationTitle>
+		<ApplicationTitle>SeshMerch</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.seshwoods.teamseshmerch</ApplicationId>
