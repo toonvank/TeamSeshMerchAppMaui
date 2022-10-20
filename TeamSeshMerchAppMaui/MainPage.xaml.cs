@@ -37,18 +37,18 @@ public partial class MainPage : ContentPage
 
     private async void btnInput_Clicked(object sender, EventArgs e)
     {
-        activity.IsRunning = true;
-        await m.FillProductList();
-        albumCollection.ItemsSource = DataPass.rssChannel;
-        activity.IsRunning = false;
-        carousel.ItemsSource = DataPass.rssChannel;
-        grStock.ItemsSource = m.availability();
-        grStock.ItemsSource.Add("all");
-        int producCount = Preferences.Default.Get("productCount", 0);
-        newOrLessitems = DataPass.rssChannel.Count - producCount;
-        producNumber.Text = $"{DataPass.rssChannel.Count}";
-        Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
-        fillupSources();
+        //activity.IsRunning = true;
+        //await m.FillProductList();
+        //albumCollection.ItemsSource = DataPass.rssChannel;
+        //activity.IsRunning = false;
+        //carousel.ItemsSource = DataPass.rssChannel;
+        //grStock.ItemsSource = m.availability();
+        //grStock.ItemsSource.Add("all");
+        //int producCount = Preferences.Default.Get("productCount", 0);
+        //newOrLessitems = DataPass.rssChannel.Count - producCount;
+        //producNumber.Text = $"{DataPass.rssChannel.Count}";
+        //Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
+        //fillupSources();
 
         using var client = new HttpClient();
         var content = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to=EUR");
@@ -62,7 +62,7 @@ public partial class MainPage : ContentPage
         var pleasee = details["result"];
         DataPass.gbpExchange = double.Parse(please.ToString());
 
-        grCurrency.SelectedIndex = Preferences.Default.Get("currency", 0);
+        grCurrency.SelectedIndex = Preferences.Default.Get("currency", 2);
     }
 
     private async void tapFrame_Tapped(object sender, EventArgs e)
@@ -272,6 +272,24 @@ public partial class MainPage : ContentPage
         grCurrency.TextColor = Colors.White;
 
         Preferences.Default.Set("currency", grCurrency.SelectedIndex);
+    }
+
+    private async void fetch_Clicked(object sender, EventArgs e)
+    {
+        albumCollection.ItemsSource = "";
+        carousel.ItemsSource = "";
+        activity.IsRunning = true;
+        await m.FillProductList();
+        albumCollection.ItemsSource = DataPass.rssChannel;
+        activity.IsRunning = false;
+        carousel.ItemsSource = DataPass.rssChannel;
+        grStock.ItemsSource = m.availability();
+        grStock.ItemsSource.Add("all");
+        int producCount = Preferences.Default.Get("productCount", 0);
+        newOrLessitems = DataPass.rssChannel.Count - producCount;
+        producNumber.Text = $"{DataPass.rssChannel.Count}";
+        Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
+        fillupSources();
     }
 }
 

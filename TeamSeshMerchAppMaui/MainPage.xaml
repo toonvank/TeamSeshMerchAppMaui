@@ -10,7 +10,7 @@
 
     <Grid x:Name="viewGrid" RowDefinitions="Auto,*,*" ColumnDefinitions="*,*,*" IsClippedToBounds="True" BackgroundColor="Black">
         <HorizontalStackLayout  Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="Black"  HorizontalOptions="CenterAndExpand">
-            <ImageButton HeightRequest="20" WidthRequest="30" Clicked="btnInput_Clicked"  Source="fetch.png"/>
+            <ImageButton HeightRequest="20" WidthRequest="30" x:Name="fetch" Clicked="fetch_Clicked"  Source="fetch.png"/>
             <ImageButton HeightRequest="25" Margin="0,0,11,0" WidthRequest="40" Clicked="btnFilter_Clicked" Source="moneyfilter.png" />
             <Label TextColor="White" Margin="0,0,-27,0" VerticalOptions="Center" x:Name="producNumber" Text="25" FontSize="12" TranslationY="3"></Label>
             <ImageButton Source="bag.png" x:Name="btnBag" Clicked="btnBag_Clicked" HeightRequest="30" WidthRequest="40"></ImageButton>
@@ -46,7 +46,7 @@
                                 <TapGestureRecognizer x:Name="tapFrame" Tapped="tapFrame_Tapped"/>
                             </Frame.GestureRecognizers>
                             <Grid WidthRequest="550" HeightRequest="480" Padding="0">
-                                <Image Source="{Binding image_linkField}" Scale="1.2"
+                                <Image Source="{Binding image_linkField}" Scale="1"
                                Aspect="AspectFill" Grid.Row="0" Grid.RowSpan="2" TranslationX="0" TranslationY="-50"/>
                                 <VerticalStackLayout x:Name="stckCol" HeightRequest="250" HorizontalOptions="Center" VerticalOptions="Start" TranslationY="20">
                                     <Label FontAutoScalingEnabled="True" BackgroundColor="Black" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="18" VerticalTextAlignment="Center" TextColor="White"
