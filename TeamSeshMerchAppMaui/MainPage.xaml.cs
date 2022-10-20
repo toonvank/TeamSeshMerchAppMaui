@@ -18,12 +18,19 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         btnInput_Clicked(b, System.EventArgs.Empty);
         carouselSwitch(b, System.EventArgs.Empty);
-        using (StreamReader sw = new StreamReader(sex))
+        try
         {
-            while (!sw.EndOfStream)
+            using (StreamReader sw = new StreamReader(sex))
             {
-                DataPass.favorItems.Add(int.Parse(sw.ReadLine()));
+                while (!sw.EndOfStream)
+                {
+                    DataPass.favorItems.Add(int.Parse(sw.ReadLine()));
+                }
             }
+        }
+        catch (Exception)
+        {
+
         }
     }
     private async Task WaitAndExecute(int milisec,Action actionToExecute)
@@ -131,23 +138,50 @@ public partial class MainPage : ContentPage
         grStock.TextColor = Colors.White;
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-        carousel.ItemsSource =
+        if (int.Parse(maxPrice.Text) > int.Parse(minPrice.Text))
+        {
+            carousel.ItemsSource =
             from item in DataPass.rssChannel
             where int.Parse(item.priceField.Substring(0, item.priceField.IndexOf("."))) > int.Parse(minPrice.Text)
             && int.Parse(item.priceField.Substring(0, item.priceField.IndexOf("."))) < int.Parse(maxPrice.Text)
             select item;
-        albumCollection.ItemsSource = carousel.ItemsSource;
-        absLayout.IsVisible = false;
+            albumCollection.ItemsSource = carousel.ItemsSource;
+            absLayout.IsVisible = false;
+        }
+        else
+        {
+            await DisplayAlert("Please try again", "Can't filter. Min price is larget than max price", "OK");
+            minPrice.Text = String.Empty;
+            maxPrice.Text = String.Empty;
+            minPrice.Focus();
+        }
+        
     }
 
     private async void btnReset_Clicked(object sender, EventArgs e)
     {
         Button b = new Button();
-        btnInput_Clicked(b, System.EventArgs.Empty);
+
+        activity.IsRunning = true;
+        await m.FillProductList();
+        albumCollection.ItemsSource = DataPass.rssChannel;
+        activity.IsRunning = false;
+        carousel.ItemsSource = DataPass.rssChannel;
+        grStock.ItemsSource = m.availability();
+        grStock.ItemsSource.Add("all");
+        int producCount = Preferences.Default.Get("productCount", 0);
+        newOrLessitems = DataPass.rssChannel.Count - producCount;
+        producNumber.Text = $"{DataPass.rssChannel.Count}";
+        Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
+        fillupSources();
+
         await absLayout.TranslateTo(0, 40, 500);
         absLayout.IsVisible = false;
+
+        minPrice.Text = String.Empty;
+        maxPrice.Text = String.Empty;
     }
 
     private async void btnBag_Clicked(object sender, EventArgs e)
@@ -328,7 +362,7 @@ public partial class MainPage : ContentPage
             }
             else
             {
-                await DisplayAlert("Alert", "You have already favorited this item.", "OK");
+                await DisplayAlert("Reminder", "You have already favorited this item.", "OK");
             }
         }
         else if (f.File == "filledheart")
@@ -348,7 +382,9 @@ public partial class MainPage : ContentPage
 
     private async void btnHearts_Clicked(object sender, EventArgs e)
     {
+        activity.IsRunning = true;
         await Shell.Current.GoToAsync(nameof(myFavorites));
+        activity.IsRunning = false;
     }
 }
 
