@@ -14,5 +14,6 @@ namespace TeamSeshMerchAppMaui
         public static int currencyIndex = 2;
         public static double eurExchange { get; set; }
         public static double gbpExchange { get; set; }
+        public static List<int> favorItems = new List<int>();
     }
 }

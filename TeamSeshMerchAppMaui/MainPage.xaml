@@ -12,6 +12,7 @@
         <HorizontalStackLayout  Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="Black"  HorizontalOptions="CenterAndExpand">
             <ImageButton HeightRequest="22"  Margin="5,0,0,0" WidthRequest="45" x:Name="fetch" Clicked="fetch_Clicked"  Source="fetch.png"/>
             <ImageButton HeightRequest="22" Margin="5,0,0,0"  WidthRequest="45" Clicked="btnFilter_Clicked" Source="moneyfilter.png" />
+            <ImageButton HeightRequest="25" Margin="5,0,0,0" WidthRequest="46" Clicked="btnHearts_Clicked" x:Name="btnHearts" Source="heart.png" />
             <Label TextColor="White" Margin="15,-2,-30,0" VerticalOptions="Center" x:Name="producNumber" Text="25" FontSize="11" TranslationY="3"></Label>
             <ImageButton Source="bag.png" x:Name="btnBag" Margin="0,-2,0,0" Clicked="btnBag_Clicked" HeightRequest="23" WidthRequest="46"></ImageButton>
             <ImageButton HeightRequest="22" Margin="5,0,0,0" WidthRequest="46" Clicked="btnSource_Clicked" x:Name="btnSource" Source="src.png" />
@@ -100,6 +101,7 @@
                             <Image Source="{Binding image_linkField}" Scale="5"
                                Aspect="AspectFit" Grid.Row="0" Grid.RowSpan="3" TranslationY="5" />
                             <Label BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="3" Opacity="0.3"/>
+                            <ImageButton HeightRequest="19" WidthRequest="19" Grid.Row="2" Margin="0,-6,7,0" HorizontalOptions="End" BackgroundColor="Transparent" x:Name="iLoveThis" Clicked="iLoveThis_Clicked" Source="heart"></ImageButton>
                             <VerticalStackLayout Padding="5">
                                 <Label Grid.Row="0" HeightRequest="60" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="20" TextColor="White"
                         Text="{Binding titleField}"/>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeamSeshMerchAppMaui.myFavorites"
+             xmlns:item="clr-namespace:TeamSeshMerchAppMaui"
+             Title=""
+             Shell.NavBarIsVisible="True">
+    <CollectionView ItemsLayout="VerticalGrid, 2" Grid.Row="3" Grid.ColumnSpan="3" x:Name="albumCollection" TranslationY="0">
+        <CollectionView.EmptyView>
+            <ContentView>
+                <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                    <Label Text="You haven't favorited anything yet!"
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+            </ContentView>
+        </CollectionView.EmptyView>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="item:rssChannelItem" x:Name="dtaData">
+                <Grid Margin="1" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="560*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Frame Margin="2" Padding="0" Grid.Row="0" Grid.RowSpan="5" CornerRadius="15" x:Name="frFrame">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="tapFrame" Tapped="tapFrame_Tapped"/>
+                        </Frame.GestureRecognizers>
+                        <Grid Margin="1" Padding="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="560*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding image_linkField}" Scale="5"
+                                   Aspect="AspectFit" Grid.Row="0" Grid.RowSpan="3" TranslationY="5" />
+                            <Label BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="3" Opacity="0.3"/>
+                            <VerticalStackLayout Padding="5">
+                                <Label Grid.Row="0" HeightRequest="60" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="20" TextColor="White"
+                            Text="{Binding titleField}"/>
+                                <Label Grid.Row="2" 
+                            Text="{Binding priceField}" HeightRequest="22" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18" TextColor="White"/>
+                                <Label Grid.Row="1" HeightRequest="20" HorizontalOptions="CenterAndExpand"  TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
+                        Text="{Binding availabilityField}" TextTransform="Uppercase" FontSize="15"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                    <Button Grid.Row="2" FontSize="16" Clicked="Button_Clicked" HorizontalOptions="End" BackgroundColor="Black" HeightRequest="30" WidthRequest="30" Padding="0" Text="&#128465;" TranslationX="-6" TranslationY="-22"></Button>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

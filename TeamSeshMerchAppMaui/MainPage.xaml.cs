@@ -1,6 +1,8 @@
 ﻿using Microsoft.Maui.Controls;
 using Newtonsoft.Json.Linq;
 using System.Runtime.ConstrainedExecution;
+using static Android.Graphics.ImageDecoder;
+using AndroidApp = Android.App.Application;
 //using static Android.Content.ClipData;
 
 namespace TeamSeshMerchAppMaui;
@@ -16,6 +18,13 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         btnInput_Clicked(b, System.EventArgs.Empty);
         carouselSwitch(b, System.EventArgs.Empty);
+        using (StreamReader sw = new StreamReader(sex))
+        {
+            while (!sw.EndOfStream)
+            {
+                DataPass.favorItems.Add(int.Parse(sw.ReadLine()));
+            }
+        }
     }
     private async Task WaitAndExecute(int milisec,Action actionToExecute)
     {
@@ -294,6 +303,52 @@ public partial class MainPage : ContentPage
         producNumber.Text = $"{DataPass.rssChannel.Count}";
         Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
         fillupSources();
+    }
+    string sex = Path.Combine(AndroidApp.Context.GetExternalFilesDir(Android.OS.Environment.DirectoryDownloads).AbsolutePath, "favItems.txt");
+    private async void iLoveThis_Clicked(object sender, EventArgs e)
+    {
+        ImageButton s = (ImageButton)sender;
+        FileImageSource f = (FileImageSource)s.Source;
+
+        ImageButton i = (ImageButton)sender;
+        rssChannelItem r = (rssChannelItem)i.BindingContext;
+
+        if (f.File == "heart")
+        {
+            if (!DataPass.favorItems.Contains(r.idField))
+            {
+                s.Source = "filledheart";
+                await s.ScaleTo(1.3, 600);
+                await s.ScaleTo(1, 70);
+                using (StreamWriter sw = new StreamWriter(sex, true))
+                {
+                    sw.WriteLine(r.idField);
+                    DataPass.favorItems.Add(r.idField);
+                }
+            }
+            else
+            {
+                await DisplayAlert("Alert", "You have already favorited this item.", "OK");
+            }
+        }
+        else if (f.File == "filledheart")
+        {
+            s.Source = "heart";
+
+            using (StreamWriter sw = new StreamWriter(sex))
+            {
+                DataPass.favorItems.Remove(r.idField);
+                foreach (var item in DataPass.favorItems)
+                {
+                    sw.WriteLine(item);
+                }
+            }
+        }
+    }
+
+    private async void btnHearts_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(myFavorites));
     }
 }
 
