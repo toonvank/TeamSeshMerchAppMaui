@@ -29,7 +29,7 @@ When you open the app it fetches new products. This should only take a few secon
   </tr>
 </table> 
 <h2>Extra info</h2>
-This app <b>requires WIFI</b> for updating the product list. This auto happens on startup or can be manually done by pressing the first button in the navbar. There is no intent to copy or mimic the functionalities of the original stores. This is merely a client that uses the xml data of the stores. This app was only a practice exercise in how to load external data into a .net app and how to use other techniques.
+There can occur some weird UI bugs on Android 13 like white borders where there arent supposed to be. This app <b>requires WIFI</b> for updating the product list. This auto happens on startup or can be manually done by pressing the first button in th  navbar. There is no intent to copy or mimic the functionalities of the original stores. This is merely a client that uses the xml data of the stores. This app was only a practice exercise in how to load external data into a .net app and how to use other techniques.
 <h2>Screenshots</h2>
 <div style="display: flex;">
  <img style="height:600px; width:auto;" src="images/1.png">
