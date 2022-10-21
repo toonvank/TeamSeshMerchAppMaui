@@ -1,6 +1,6 @@
 <img style="width:1200px; heigth: auto;" src="https://user-images.githubusercontent.com/61182641/196042934-965ff7ba-e829-4baf-8d0d-bc9b68b948a0.gif">
-<p><i><b>AVAILABLE FOR ANDROID & WINDOWS (ONLY TESTED ON ANDROID 10 & NOT OPTIMIZED FOR WINDOWS)</b></i></p>
-This is a TEAMSESH merch app for Android.
+<p><i><b>AVAILABLE FOR ANDROID (BUILT FOR ANDROID 10)</b></i></p>
+This is a TEAMSESH merch app.
 The purpose of this app is to have an overview of all teamsesh merch sources in one app and keep up with new releases.
 <h2>How to install on Android</h2>
 In the releases tab of this repo you can find an apk under the project assets or press the hyperlink <b>DOWNLOAD APK FOR ANDROID</b>. Then open the apk, press install and if prompted "this developer unknown" accept to continue.
