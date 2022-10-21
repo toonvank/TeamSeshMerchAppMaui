@@ -66,19 +66,26 @@ public partial class MainPage : ContentPage
         //Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
         //fillupSources();
 
-        using var client = new HttpClient();
-        var content = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to=EUR");
-        var details = JObject.Parse(content);
-        var please = details["result"];
-        DataPass.eurExchange = double.Parse(please.ToString());
+        try
+        {
+            using var client = new HttpClient();
+            var content = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to=EUR");
+            var details = JObject.Parse(content);
+            var please = details["result"];
+            DataPass.eurExchange = double.Parse(please.ToString());
 
-        using var clientt = new HttpClient();
-        var contentt = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to=GBP");
-        var detailss = JObject.Parse(content);
-        var pleasee = details["result"];
-        DataPass.gbpExchange = double.Parse(please.ToString());
+            using var clientt = new HttpClient();
+            var contentt = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to=GBP");
+            var detailss = JObject.Parse(content);
+            var pleasee = details["result"];
+            DataPass.gbpExchange = double.Parse(please.ToString());
 
-        grCurrency.SelectedIndex = Preferences.Default.Get("currency", 2);
+            grCurrency.SelectedIndex = Preferences.Default.Get("currency", 2);
+        }
+        catch (Exception)
+        {
+            await DisplayAlert("Alert", "Please check your internet connection and restart the application.", "OK");
+        }
     }
 
     private async void tapFrame_Tapped(object sender, EventArgs e)
