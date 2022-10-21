@@ -154,7 +154,7 @@
             </BoxView>
 
             <VerticalStackLayout WidthRequest="360" HeightRequest="300" TranslationY="15">
-                <Label HorizontalTextAlignment="Center" TextColor="White" Text="Select sources" Margin="0,0,0,7" />
+                <Label HorizontalTextAlignment="Center" TextColor="White" Text="Select sources (experimental)" Margin="0,0,0,7" />
                 <VerticalStackLayout x:Name="itemContent" WidthRequest="300">
                 </VerticalStackLayout>
                 <Button x:Name="btnSave" Clicked="btnSave_Clicked" Text="Save selection" WidthRequest="200"/>

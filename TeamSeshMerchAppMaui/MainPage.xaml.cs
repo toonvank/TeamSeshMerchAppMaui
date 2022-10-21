@@ -254,15 +254,23 @@ public partial class MainPage : ContentPage
     void OnColorsRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         CheckBox s = sender as CheckBox;
-        HorizontalStackLayout r = s.Parent as HorizontalStackLayout;
+        HorizontalStackLayout h = s.Parent as HorizontalStackLayout;
         if (s.IsChecked == true)
         {
-            DataPass.whichOneRemove.Add(r.Children.IndexOf(s));
+            int who = itemContent.Children.IndexOf(h);
+            DataPass.whichOneRemove.Add(itemContent.Children.IndexOf(h));
+        }
+        else
+        {
+            DataPass.whichOneRemove.Remove(itemContent.Children.IndexOf(h));
         }
     }
 
     private async void btnSave_Clicked(object sender, EventArgs e)
     {
+        albumCollection.ItemsSource = "";
+        carousel.ItemsSource = "";
+
         activity.IsRunning = true;
         await m.FillProductListCustSource();
         albumCollection.ItemsSource = DataPass.rssChannel;

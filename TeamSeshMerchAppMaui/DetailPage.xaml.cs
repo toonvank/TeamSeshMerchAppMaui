@@ -17,9 +17,7 @@ public partial class DetailPage : ContentPage
 	{
         try
         {
-            Frame fr = (Frame)sender;
-            rssChannelItem a = (rssChannelItem)fr.BindingContext;
-            Uri uri = new Uri(a.linkField);
+            Uri uri = new Uri(DataPass.passedAlbum[0].linkField);
             await Browser.Default.OpenAsync(uri, BrowserLaunchMode.SystemPreferred);
         }
         catch (Exception ex)

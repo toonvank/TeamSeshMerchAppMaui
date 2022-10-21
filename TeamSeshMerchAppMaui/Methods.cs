@@ -39,7 +39,14 @@ namespace TeamSeshMerchAppMaui
             Sources s = new Sources();
             for (int i = 0; i < s.AddLinks().Count; i++)
             {
-                await ReadXml(s.AddLinks()[i]);
+                try
+                {
+                    await ReadXml(s.AddLinks()[i]);
+                }
+                catch (Exception)
+                {
+
+                }
             }
         }
         public async Task FillProductListCustSource()
@@ -48,7 +55,14 @@ namespace TeamSeshMerchAppMaui
             Sources s = new Sources();
             foreach (var item in DataPass.whichOneRemove)
             {
-                await ReadXml(s.AddLinks()[item]);
+                try
+                {
+                    await ReadXml(s.AddLinks()[item]);
+                }
+                catch (Exception)
+                {
+
+                }
             }
         }
         public List<string> availability()
