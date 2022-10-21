@@ -133,18 +133,18 @@
                 </Grid.RowDefinitions>
                 <FlexLayout HorizontalOptions="Center" Direction="Column" Grid.Row="0" Grid.RowSpan="3" AlignContent="Center" AlignItems="Center" FlowDirection="LeftToRight">
                     <HorizontalStackLayout>
-                        <Entry HorizontalTextAlignment="Center" FontSize="20" Keyboard="Numeric" BackgroundColor="White" TextColor="Black" Margin="0,0,15,0" Placeholder="Min Price" x:Name="minPrice"></Entry>
-                        <Entry HorizontalTextAlignment="Center" FontSize="20" Keyboard="Numeric" BackgroundColor="White" TextColor="Black" Placeholder="Max Price" x:Name="maxPrice"></Entry>
+                        <Entry HorizontalTextAlignment="Center" WidthRequest="100" HeightRequest="50" FontSize="15" Keyboard="Numeric" BackgroundColor="White" TextColor="Black" Margin="0,0,15,0" Placeholder="min price" x:Name="minPrice"></Entry>
+                        <Entry HorizontalTextAlignment="Center" WidthRequest="100" HeightRequest="50" FontSize="15" Keyboard="Numeric" BackgroundColor="White" TextColor="Black" Placeholder="max price" x:Name="maxPrice"></Entry>
                     </HorizontalStackLayout>
                     <VerticalStackLayout >
-                        <Button WidthRequest="270" FontSize="17" Text="show items" Margin="0,10,0,0" Clicked="Button_Clicked"></Button>
-                        <Button WidthRequest="240" Text="reset products" Margin="0,10,0,0" x:Name="btnReset" Clicked="btnReset_Clicked"></Button>
+                        <Button WidthRequest="270" FontSize="17" Text="show items" Margin="0,10,0,0" Clicked="Button_Clicked" BackgroundColor="PaleGreen" TextColor="Black"></Button>
+                        <Button WidthRequest="240" Text="reset products" Margin="0,10,0,0" x:Name="btnReset" BackgroundColor="PaleGoldenrod" TextColor="Black" Clicked="btnReset_Clicked"></Button>
                     </VerticalStackLayout>
                 </FlexLayout>
             </Grid>
         </AbsoluteLayout>
 
-        <AbsoluteLayout IsVisible="false" x:Name="absLayout2" Grid.Row="5" Grid.ColumnSpan="3" HeightRequest="300" WidthRequest="360" Margin="0,230,0,0">
+        <AbsoluteLayout IsVisible="false" x:Name="absLayout2" Grid.Row="5" Grid.ColumnSpan="3" HeightRequest="200" WidthRequest="360" Margin="0,230,0,0">
             <BoxView Color="Black"
              CornerRadius="40"
              WidthRequest="360"
@@ -153,11 +153,11 @@
              HorizontalOptions="Center" >
             </BoxView>
 
-            <VerticalStackLayout WidthRequest="360" HeightRequest="300">
-                <Label HorizontalTextAlignment="Center" TextColor="White" Text="Select sources" />
-                <VerticalStackLayout x:Name="itemContent">
+            <VerticalStackLayout WidthRequest="360" HeightRequest="300" TranslationY="15">
+                <Label HorizontalTextAlignment="Center" TextColor="White" Text="Select sources" Margin="0,0,0,7" />
+                <VerticalStackLayout x:Name="itemContent" WidthRequest="300">
                 </VerticalStackLayout>
-                <Button x:Name="btnSave" Clicked="btnSave_Clicked" Text="Save selection"/>
+                <Button x:Name="btnSave" Clicked="btnSave_Clicked" Text="Save selection" WidthRequest="200"/>
             </VerticalStackLayout>
         </AbsoluteLayout>
         <ActivityIndicator Grid.RowSpan="4" Grid.ColumnSpan="5" x:Name="activity" Color="White"/>

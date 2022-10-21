@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeamSeshMerchAppMaui.myFavorites"
              xmlns:item="clr-namespace:TeamSeshMerchAppMaui"
-             Title=""
+             Title="My Favorites"
              Shell.NavBarIsVisible="True">
     <CollectionView ItemsLayout="VerticalGrid, 2" Grid.Row="3" Grid.ColumnSpan="3" x:Name="albumCollection" TranslationY="0">
         <CollectionView.EmptyView>
