@@ -3,7 +3,7 @@
 This is a TEAMSESH merch app.
 The purpose of this app is to have an overview of all teamsesh merch sources in one app and keep up with new releases.
 <h2>How to install on Android</h2>
-In the releases tab of this repo you can find an apk under the project assets or press the hyperlink <b>DOWNLOAD APK FOR ANDROID</b>. Then open the apk, press install and if prompted "this developer unknown" accept to continue.
+In the <a href="https://github.com/toonvank/TeamSeshMerchAppMaui/releases">releases</a> tab of this repo you can find an apk under the project assets or press the hyperlink <b>DOWNLOAD APK FOR ANDROID</b>. Then open the apk, press install and if prompted "this developer unknown" accept to continue.
 <h2>How to use (general)</h2>
 When you open the app it fetches new products. This should only take a few seconds depending on your internet speed. All products have a short description of price and availability. When you press on one of the items you will see a detailed page with more info and possibility to surf to visit the site of that product (in case you want to purchase, <b>THERE ARE NO PURCHASES IN THE APP</b>).
 <h2>How to use (navbar)</h2>
