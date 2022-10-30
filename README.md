@@ -1,9 +1,9 @@
 <img style="width:1200px; heigth: auto;" src="https://user-images.githubusercontent.com/61182641/196042934-965ff7ba-e829-4baf-8d0d-bc9b68b948a0.gif">
-<p><i><b>AVAILABLE FOR ANDROID & WINDOWS (ONLY TESTED ON ANDROID 10 & NOT OPTIMIZED FOR WINDOWS)</b></i></p>
-This is a TEAMSESH merch app for Android.
+<p><i><b>AVAILABLE FOR ANDROID (BUILT FOR ANDROID 10)</b></i></p>
+This is a TEAMSESH merch app.
 The purpose of this app is to have an overview of all teamsesh merch sources in one app and keep up with new releases.
 <h2>How to install on Android</h2>
-In the releases tab of this repo you can find an apk under the project assets or press the hyperlink <b>DOWNLOAD APK FOR ANDROID</b>. Then open the apk, press install and if prompted "this developer unknown" accept to continue.
+In the <a href="https://github.com/toonvank/TeamSeshMerchAppMaui/releases">releases</a> tab of this repo you can find an apk under the project assets or press the hyperlink <b>DOWNLOAD APK FOR ANDROID</b>. Then open the apk, press install and if prompted "this developer unknown" accept to continue.
 <h2>How to use (general)</h2>
 When you open the app it fetches new products. This should only take a few seconds depending on your internet speed. All products have a short description of price and availability. When you press on one of the items you will see a detailed page with more info and possibility to surf to visit the site of that product (in case you want to purchase, <b>THERE ARE NO PURCHASES IN THE APP</b>).
 <h2>How to use (navbar)</h2>
@@ -29,7 +29,7 @@ When you open the app it fetches new products. This should only take a few secon
   </tr>
 </table> 
 <h2>Extra info</h2>
-This app <b>requires WIFI</b> for updating the product list. This auto happens on startup or can be manually done by pressing the first button in the navbar. There is no intent to copy or mimic the functionalities of the original stores. This is merely a client that uses the xml data of the stores. This app was only a practice exercise in how to load external data into a .net app and how to use other techniques.
+There can occur some weird UI bugs on Android 13 like white borders where there arent supposed to be. This app <b>requires WIFI</b> for updating the product list. This auto happens on startup or can be manually done by pressing the first button in th  navbar. There is no intent to copy or mimic the functionalities of the original stores. This is merely a client that uses the xml data of the stores. This app was only a practice exercise in how to load external data into a .net app and how to use other techniques.
 <h2>Screenshots</h2>
 <div style="display: flex;">
  <img style="height:600px; width:auto;" src="images/1.png">
