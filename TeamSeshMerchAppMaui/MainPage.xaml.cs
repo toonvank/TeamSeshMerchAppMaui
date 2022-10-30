@@ -53,33 +53,10 @@ public partial class MainPage : ContentPage
 
     private async void btnInput_Clicked(object sender, EventArgs e)
     {
-        //activity.IsRunning = true;
-        //await m.FillProductList();
-        //albumCollection.ItemsSource = DataPass.rssChannel;
-        //activity.IsRunning = false;
-        //carousel.ItemsSource = DataPass.rssChannel;
-        //grStock.ItemsSource = m.availability();
-        //grStock.ItemsSource.Add("all");
-        //int producCount = Preferences.Default.Get("productCount", 0);
-        //newOrLessitems = DataPass.rssChannel.Count - producCount;
-        //producNumber.Text = $"{DataPass.rssChannel.Count}";
-        //Preferences.Default.Set("productCount", DataPass.rssChannel.Count);
-        //fillupSources();
-
         try
         {
-            using var client = new HttpClient();
-            var content = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to=EUR");
-            var details = JObject.Parse(content);
-            var please = details["result"];
-            DataPass.eurExchange = double.Parse(please.ToString());
-
-            using var clientt = new HttpClient();
-            var contentt = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to=GBP");
-            var detailss = JObject.Parse(content);
-            var pleasee = details["result"];
-            DataPass.gbpExchange = double.Parse(please.ToString());
-
+            await m.GetCurrency("GBP");
+            await m.GetCurrency("EUR");
             grCurrency.SelectedIndex = Preferences.Default.Get("currency", 2);
         }
         catch (Exception)

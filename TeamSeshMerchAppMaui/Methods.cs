@@ -1,4 +1,5 @@
 ﻿using CodeHollow.FeedReader;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,22 @@ namespace TeamSeshMerchAppMaui
             availability.Add("in stock");
             availability.Add("all");
             return availability;
+        }
+
+        public async Task GetCurrency(string cur)
+        {
+            using var client = new HttpClient();
+            var content = await client.GetStringAsync($"https://api.exchangerate.host/convert?from=USD&to={cur}");
+            var details = JObject.Parse(content);
+            var please = details["result"];
+            if (cur == "EUR")
+            {
+                DataPass.eurExchange = double.Parse(please.ToString());
+            }
+            else if (cur == "GBP")
+            {
+                DataPass.gbpExchange = double.Parse(please.ToString());
+            }
         }
     }
 }
