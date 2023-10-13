@@ -1,4 +1,5 @@
 <img style="width:1200px; heigth: auto;" src="https://user-images.githubusercontent.com/61182641/196042934-965ff7ba-e829-4baf-8d0d-bc9b68b948a0.gif">
+DOESN'T WORK CURRENTLY
 <p><i><b>AVAILABLE FOR ANDROID (BUILT FOR ANDROID 10)</b></i></p>
 This is a TEAMSESH merch app.
 The purpose of this app is to have an overview of all teamsesh merch sources in one app and keep up with new releases.
