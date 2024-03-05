@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BonesAlbumInfoApp.Merch"
+             xmlns:models="clr-namespace:BonesAlbumInfoApp.Model"
+             xmlns:viewmodels="clr-namespace:BonesAlbumInfoApp.ViewModel"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="viewmodels:MerchViewModel"
+             Title="Merch">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#131212" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
+
+    <Grid x:Name="viewGrid" RowDefinitions="Auto,*,*" ColumnDefinitions="*,*,*" IsClippedToBounds="True" BackgroundColor="Black">
+        <!--<Button IsVisible="false" x:Name="FilterPriceCommand" Command="{Binding FilterThePriceCommand}"></Button>
+        <Button IsVisible="false" x:Name="UpdateCustSourceCommand" Command="{Binding UpdateCustSourceCommand}"></Button>
+        <Button IsVisible="false" x:Name="StockCommand" Command="{Binding StockCommand}"></Button>
+        <HorizontalStackLayout  Grid.Row="0" Grid.ColumnSpan="4" BackgroundColor="Black"  HorizontalOptions="CenterAndExpand">
+            <ImageButton Style="{StaticResource viewGridItems}" Clicked="btnFilter_Clicked" Source="moneyfilter.png" />
+            <ImageButton HeightRequest="25" Margin="5,0,0,0" WidthRequest="46" Clicked="btnHearts_Clicked" x:Name="btnHearts" Source="heart.png" />
+            <Label TextColor="White" Margin="15,-2,-30,0" VerticalOptions="Center" x:Name="producNumber" Text="25" FontSize="11" TranslationY="3"></Label>
+            <ImageButton Source="bag.png" x:Name="btnBag" Margin="0,-2,0,0" Clicked="btnBag_Clicked" HeightRequest="23" WidthRequest="46"></ImageButton>
+            <ImageButton Style="{StaticResource viewGridItems}" Clicked="btnSource_Clicked" x:Name="btnSource" Source="src.png" />
+            <Picker WidthRequest="45" Margin="5,0,0,0" SelectedIndexChanged="grCurrency_SelectedIndexChanged" Title="€£$₽" SelectedIndex="2" FontSize="16" TitleColor="White" x:Name="grCurrency">
+                <Picker.Items>
+                    <x:String>EUR</x:String>
+                    <x:String>GBP</x:String>
+                    <x:String>USD</x:String>
+                    <x:String>RUB</x:String>
+                </Picker.Items>
+            </Picker>
+            <Picker WidthRequest="45" Margin="5,0,0,0"  SelectedIndexChanged="grStock_SelectedIndexChanged" Title="🝖" TranslationY="3" HorizontalTextAlignment="Center" TranslationX="-4" FontSize="12" TitleColor="White" x:Name="grStock"/>
+        </HorizontalStackLayout>-->
+        <CarouselView IsBounceEnabled="True" Grid.Row="1" x:Name="carousel" Position="{Binding CarPosition}" Grid.ColumnSpan="3" ItemsSource="{Binding MerchItems}">
+            <CarouselView.EmptyView>
+                <ContentView>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Style="{StaticResource loadingLabel}"/>
+                    </StackLayout>
+                </ContentView>
+            </CarouselView.EmptyView>
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="models:rssChannelItem">
+                    <StackLayout>
+                        <Frame CornerRadius="15" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="700" WidthRequest="700"  x:Name="frFrame">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="tapFrame" Tapped="tapFrame_Tapped"/>
+                            </Frame.GestureRecognizers>
+                            <Grid Padding="5">
+                                <Image Source="{Binding image_linkField}" Aspect="AspectFit" />
+                                <StackLayout VerticalOptions="Start" Spacing="5">
+                                    <Label FontAutoScalingEnabled="True" BackgroundColor="Black" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="16" TextColor="White" Text="{Binding titleField}"/>
+                                    <Label Text="{Binding priceField}" BackgroundColor="Black" TextColor="White" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18"/>
+                                    <Label BackgroundColor="Black" Padding="2" HorizontalOptions="CenterAndExpand" TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}" Text="{Binding availabilityField}" TextTransform="Uppercase" FontSize="15"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="1" Grid.ColumnSpan="5">
+            <Button Text="&#x3C;" x:Name="skipBack" VerticalOptions="Center" Clicked="skipBack_Clicked" TextColor="DarkSlateGray" BackgroundColor="LightGray" Padding="0,0,0,0" Margin="0,0,400,0" WidthRequest="24" FontSize="21" FontAttributes="Bold" ></Button>
+            <Button Text="&#62;" x:Name="skipFrwd" VerticalOptions="Center" Clicked="skipFrwd_Clicked" TextColor="DarkSlateGray" BackgroundColor="LightGray" Padding="0,0,0,0" WidthRequest="24" FontSize="21" FontAttributes="Bold"></Button>
+        </HorizontalStackLayout>
+        <CollectionView ItemsLayout="VerticalGrid, 2" Grid.Row="3" Grid.ColumnSpan="3" x:Name="albumCollection" TranslationY="0" ItemsSource="{Binding MerchItems}">
+            <CollectionView.EmptyView>
+                <ContentView>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                        <Label Style="{StaticResource loadingLabel}"/>
+                    </StackLayout>
+                </ContentView>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:Name="dtaData" x:DataType="models:rssChannelItem">
+                    <Frame Margin="2" Padding="0" CornerRadius="15" x:Name="frFrame">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="tapFrame" Tapped="tapFrame_Tapped"/>
+                        </Frame.GestureRecognizers>
+                        <Grid Margin="1" Padding="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="560*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding image_linkField}" Scale="1.5"
+                               Aspect="AspectFit" Grid.Row="0" Grid.RowSpan="3" TranslationY="5" />
+                            <Label BackgroundColor="Black" Grid.Row="0" Grid.RowSpan="3" Opacity="0.3"/>
+                            <!--<ImageButton HeightRequest="19" WidthRequest="19" Grid.Row="2" Margin="0,-6,7,0" HorizontalOptions="End" BackgroundColor="Transparent" x:Name="iLoveThis" Clicked="iLoveThis_Clicked" Source="heart"></ImageButton>-->
+                            <VerticalStackLayout Padding="5">
+                                <Label Grid.Row="0" HeightRequest="60" x:Name="lblTitle" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="20" TextColor="White"
+                        Text="{Binding titleField}"/>
+                                <Label Grid.Row="2" 
+                        Text="{Binding priceField}" HeightRequest="22" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="18" TextColor="White"/>
+                                <Label Grid.Row="1" HeightRequest="20" HorizontalOptions="CenterAndExpand"  TextDecorations="Underline" FontAttributes="Bold" TextColor="{Binding stockColor}"
+                        Text="{Binding availabilityField}" TextTransform="Uppercase" FontSize="15"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <AbsoluteLayout x:Name="absLayout" WidthRequest="400"  Style="{StaticResource absLayoutStyle}">
+            <BoxView  Style="{StaticResource boxViewStyle}">
+            </BoxView>
+
+            <Grid Padding="15" WidthRequest="400" Margin="0,25,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="70" />
+                </Grid.RowDefinitions>
+                <FlexLayout HorizontalOptions="Center" Direction="Column" Grid.Row="0" Grid.RowSpan="3" AlignContent="Center" AlignItems="Center" FlowDirection="LeftToRight">
+                    <HorizontalStackLayout>
+                        <Entry Style="{StaticResource absLayoutEntry}" Margin="0,0,15,0" Placeholder="min price" x:Name="minPrice"></Entry>
+                        <Entry Style="{StaticResource absLayoutEntry}" Placeholder="max price" x:Name="maxPrice"></Entry>
+                    </HorizontalStackLayout>
+                    <VerticalStackLayout >
+                        <Button WidthRequest="270" FontSize="17" Text="show items" Margin="0,10,0,0" Clicked="Button_Clicked" BackgroundColor="PaleGreen" TextColor="Black"></Button>
+                    </VerticalStackLayout>
+                </FlexLayout>
+            </Grid>
+        </AbsoluteLayout>
+
+        <AbsoluteLayout x:Name="absLayout2" WidthRequest="360"  Style="{StaticResource absLayoutStyle}">
+            <BoxView Style="{StaticResource boxViewStyle}">
+            </BoxView>
+
+            <VerticalStackLayout WidthRequest="360" HeightRequest="300" TranslationY="12">
+                <Label HorizontalTextAlignment="Center" TextColor="White" Text="Select sources" Margin="0,0,0,7" />
+                <VerticalStackLayout x:Name="itemContent" WidthRequest="300">
+                </VerticalStackLayout>
+                <Button x:Name="btnSave" Clicked="btnSave_Clicked" Text="Save selection" WidthRequest="200"/>
+            </VerticalStackLayout>
+        </AbsoluteLayout>
+        <ActivityIndicator Grid.RowSpan="4" Grid.ColumnSpan="5" x:Name="activity" Color="White"/>
+        <ActivityIndicator Grid.RowSpan="4" Grid.ColumnSpan="5" x:Name="acti" Color="White" IsRunning="{Binding IsRunning}"/>
+    </Grid>
+</ContentPage>

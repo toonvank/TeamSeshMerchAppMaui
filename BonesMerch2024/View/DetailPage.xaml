@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeamSeshMerchAppMaui.DetailPage"
+             xmlns:item="clr-namespace:BonesAlbumInfoApp.Model"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="My favorites"
+             Shell.NavBarIsVisible="True">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#131212" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
+    <Grid RowDefinitions="Auto,Auto,*" IsClippedToBounds="True">
+        <CarouselView IsBounceEnabled="True" Grid.Row="1" HeightRequest="300" x:Name="crsImages" Grid.ColumnSpan="3" Loop="True">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Frame WidthRequest="350" HeightRequest="300" CornerRadius="0" x:Name="frFrame">
+                        <Grid Margin="0" WidthRequest="350" HeightRequest="300" Padding="0">
+                            <Image Source="{Binding}"
+                               Aspect="AspectFill" Grid.Row="0" Grid.RowSpan="2"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="1" Grid.ColumnSpan="5">
+            <Button Text="&#x3C;" x:Name="skipBack" VerticalOptions="Center" Clicked="skipBack_Clicked" TextColor="DarkSlateGray" BackgroundColor="LightGray" Padding="0,0,0,0" Margin="0,0,290,0" WidthRequest="24" FontSize="21" FontAttributes="Bold" ></Button>
+            <Button Text="&#62;" x:Name="skipFrwd" VerticalOptions="Center" Clicked="skipFrwd_Clicked" TextColor="DarkSlateGray" BackgroundColor="LightGray" Padding="0,0,0,0" WidthRequest="24" FontSize="21" FontAttributes="Bold"></Button>
+        </HorizontalStackLayout>
+        <CollectionView Grid.Row="2" x:Name="albumCollection">
+            <CollectionView.EmptyView>
+                <ContentView>
+                    <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                        <Label Text="No results matched your filter."
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </ContentView>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="item:rssChannelItem" x:Name="dtaData">
+                    <VerticalStackLayout Margin="0,0,0,50">
+                        <VerticalStackLayout Margin="10">
+                            <FlexLayout x:Name="flex" HeightRequest="52" WidthRequest="320" Direction="Row" AlignItems="Start" JustifyContent="SpaceBetween">
+                                <Label FontSize="20" WidthRequest="210">
+                                    <Label.Text>
+                                        <Binding Path="titleField" />
+                                    </Label.Text>
+                                </Label>
+                                <VerticalStackLayout>
+                                    <Label FontSize="20">
+                                        <Label.Text>
+                                            <Binding Path="priceField" />
+                                        </Label.Text>
+                                    </Label>
+                                    <Label FontSize="13">
+                                        <Label.Text>
+                                            <Binding Path="availabilityField" />
+                                        </Label.Text>
+                                    </Label>
+                                </VerticalStackLayout>
+                            </FlexLayout>
+                            <Frame Margin="0,7,0,0">
+                                <Label TextColor="Black" TextTransform="Uppercase">
+                                    <Label.Text>
+                                        <Binding Path="descriptionField"/>
+                                    </Label.Text>
+                                </Label>
+                            </Frame>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <VerticalStackLayout Grid.Row="3" VerticalOptions="End" >
+            <Button Text="VISIT SITE" x:Name="visitSite" BackgroundColor="Black" Opacity="0.8" BorderWidth="0" WidthRequest="360" TranslationY="2" BorderColor="PaleGoldenrod" TextColor="White" 
+                    Margin="2" Clicked="visitSite_Clicked" CornerRadius="0">
+            </Button>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
